@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 int menuInstall(char *langs[], int numLangs);
 
@@ -7,25 +8,32 @@ int ynCheck();
 
 int main(){
     printf("Welcome to ReadySetCode\n\n");
-
-    int ynChoice;
     
     char *langs[] = {"Quit program", "Python", "C/C++",};
     int numLangs = sizeof(langs)/sizeof(langs[0]);
 
-    switch (menuInstall(langs, numLangs)){
-        case 0:
-            return 0;
+    while (1 == 1){
+        switch (menuInstall(langs, numLangs)){
+            case 0:
+                return 0;
 
-        case 1:
-            printf("Would you like to install python for all users? Y/N: ");
-            ynChoice = ynCheck();
-            if (ynChoice == 1){
-                system();
-            }
-            else{
-                system();
-            }
+            case 1:
+                printf("Would you like to install python for all users? Y/N: ");
+                if (ynCheck() == 1){
+                    printf("Installing Python for all users\n");
+                    system("winget install python3 --scope machine >nul 2>nul");
+                    printf("Python installed\n");
+                }
+                else{
+                    printf("Installing Python for current user\n");
+                    system("winget install python3 >nul 2>nul");
+                    printf("Python installed\n");
+                }
+                break;
+
+            case 2:
+                
+        }
     }
 }
 
@@ -55,13 +63,13 @@ int menuInstall(char *langs[], int numLangs){
 }
 
 int ynCheck(){
-    char choice;
-    scanf("%c", &choice);
+    char choice = 'A';
     while (1 == 1){
-        if (choice = "Y", "y"){
+        scanf(" %c", &choice);
+        if (choice == 'Y' || choice == 'y'){
             return 1;
         }
-        else if (choice == "N", "n"){
+        else if (choice == 'N' || choice == 'n'){
             return 0;
         }
         else{
