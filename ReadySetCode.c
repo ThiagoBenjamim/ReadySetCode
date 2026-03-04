@@ -21,13 +21,21 @@ int main(){
                 printf("Would you like to install python for all users? Y/N: ");
                 if (ynCheck() == 1){
                     printf("Installing Python for all users\n");
-                    system("winget install python3 --scope machine >nul 2>nul");
-                    printf("Python installed\n");
+                    if (system("winget install python3 --scope machine >nul 2>nul") == 0){
+                        printf("Python installed\n");
+                    }
+                    else{
+                        printf("Installation failed\n");
+                    }
                 }
                 else{
                     printf("Installing Python for current user\n");
-                    system("winget install python3 >nul 2>nul");
-                    printf("Python installed\n");
+                    if(system("winget install python3 >nul 2>nul") == 0){
+                        printf("Python installed\n");
+                    }
+                    else{
+                        printf("Installation failed\n");
+                    }
                 }
                 break;
 
