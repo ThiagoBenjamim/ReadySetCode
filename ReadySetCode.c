@@ -6,6 +6,10 @@ int menuInstall(char *langs[], int numLangs);
 
 int ynCheck();
 
+void pythonInstall();
+
+void cInstall();
+
 int main(){
     printf("Welcome to ReadySetCode\n\n");
     
@@ -18,29 +22,13 @@ int main(){
                 return 0;
 
             case 1:
-                printf("Would you like to install python for all users? Y/N: ");
-                if (ynCheck() == 1){
-                    printf("Installing Python for all users\n");
-                    if (system("winget install python3 --scope machine >nul 2>nul") == 0){
-                        printf("Python installed\n");
-                    }
-                    else{
-                        printf("Installation failed\n");
-                    }
-                }
-                else{
-                    printf("Installing Python for current user\n");
-                    if(system("winget install python3 >nul 2>nul") == 0){
-                        printf("Python installed\n");
-                    }
-                    else{
-                        printf("Installation failed\n");
-                    }
-                }
+                pythonInstall();
                 break;
 
             case 2:
-                
+                cInstall();
+                break;
+
         }
     }
 }
@@ -84,4 +72,30 @@ int ynCheck(){
             printf("Invalid choice, try again: ");
         }
     }
+}
+
+void pythonInstall(){
+    printf("Would you like to install python for all users? Y/N: ");
+                if (ynCheck() == 1){
+                    printf("Installing Python for all users\n");
+                    if (system("winget install python3 --scope machine >nul 2>nul") == 0){
+                        printf("Python installed\n\n");
+                    }
+                    else{
+                        printf("Installation failed\n\n");
+                    }
+                }
+                else{
+                    printf("Installing Python for current user\n");
+                    if(system("winget install python3 >nul 2>nul") == 0){
+                        printf("Python installed\n\n");
+                    }
+                    else{
+                        printf("Installation failed\n\n");
+                    }
+                }
+}
+
+void cInstall(){
+    
 }
